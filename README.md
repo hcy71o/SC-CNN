@@ -1,9 +1,9 @@
-# StyleSpeech : Multi-Speaker Adaptive Text-to-Speech Generation
-Unofficial PyTorch Implementation of [paper](https://arxiv.org/abs/2106.03153).
-Most of codes are based on [Link](https://github.com/KevinMIN95/StyleSpeech)
+# SC-CNN : An Effective Style Conditioning Method for Zero-Shot Text-to-Speech System
+Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153), we built up our codes based on [Link](https://github.com/KevinMIN95/StyleSpeech)
 
 0. [LibriTTS]((https://research.google/tools/datasets/libri-tts/)) dataset (train-clean-100 and train-clean-360) is used.
-1. Sampling rate is set to 22050Hz (default).
+1. You can select sampling rate for both 22050Hz and 16000Hz.
+
 ## Prerequisites
 - Clone this repository.
 - Install python requirements. Please refer [requirements.txt](requirements.txt)
@@ -20,6 +20,8 @@ for some preparations. (You can change the sampling rate by adding --resample_ra
 ```
 $ conda activate aligner
 $ mfa model download acoustic english_mfa
+$ mfa align ......LibriTTS/wav16 lexicon.txt english_us_arpa .........LibriTTS/Textgrid
+or
 $ mfa align ......LibriTTS/wav22 lexicon.txt english_us_arpa .........LibriTTS/Textgrid
 ```
 2. Run 
@@ -37,9 +39,4 @@ python train.py --data_path [Preprocessed LibriTTS DATAPATH]
 0. Mel generation
 ```
 python synthesize.py --checkpoint_path [CKPT PATH] --ref_audio [REF AUDIO PATH]
-```
-1. Waveform generation (Use hifi-gan)
-```
-cd hifi-gan
-python inference_e2e.py --checkpoint_file [VOCODER CKPT PATH]
 ```
