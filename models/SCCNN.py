@@ -108,7 +108,7 @@ class Encoder(nn.Module):
         self.position_enc = nn.Parameter(
             get_sinusoid_encoding_table(n_position, self.d_model).unsqueeze(0), requires_grad = False)
 
-        self.layer_stack = nn.ModuleList([CFFTBlock(
+        self.layer_stack = nn.ModuleList([SCFFTBlock(
             self.d_model, self.d_hid1, self.d_hid2, self.n_head, self.d_k, self.d_v, 
             self.style_dim, self.dropout) for _ in range(self.n_layers)])
 
@@ -144,10 +144,11 @@ class Encoder(nn.Module):
         
         for i, enc_layer in enumerate(self.layer_stack):
             
-            d_w, d_g, d_b, p_w, p_g, p_b = d_ws[:, i, :, :, :], d_gs[:, i, :], d_bs[:, i, :], p_ws[:, i, :, :, :], p_gs[:, i, :], p_bs[:, i, :]
+            d_w, d_g, d_b, p_w, p_g, p_b = d_ws[:, i, :, :, :], d_gs[:, i, :], d_bs[:, i, :], \ 
+                                            p_ws[:, i, :, :, :], p_gs[:, i, :], p_bs[:, i, :]
             
             enc_output, enc_slf_attn = enc_layer(
-                enc_output, style_vector, d_w, d_g, d_b, p_w, p_g, p_b,
+                enc_output, d_w, d_g, d_b, p_w, p_g, p_b,
                 mask=mask, 
                 slf_attn_mask=slf_attn_mask)
             slf_attn.append(enc_slf_attn)
@@ -245,22 +246,22 @@ class FFTBlock(nn.Module):
         return output, slf_attn
     
 class SCFFTBlock(nn.Module):
-    ''' Revised FFT Block '''
+    ''' 
+    Revised FFT Block 
+    '''
     def __init__(self, d_model,d_hid1,d_hid2,
                     n_head, d_k, d_v, style_dim, dropout):
         super(SCFFTBlock, self).__init__()
         self.slf_attn = MultiHeadAttention(
             n_head, d_model, d_k, d_v, dropout=dropout)
-        # self.saln_0 = StyleAdaptiveLayerNorm(d_model, style_dim)
         self.ln_0 = nn.LayerNorm(d_model)
 
         self.pos_ffn = SCPositionwiseFeedForward(
             d_model, d_hid1, d_hid2, dropout=dropout)
-        # self.saln_1 = StyleAdaptiveLayerNorm(d_model, style_dim)
         self.ln_1 = nn.LayerNorm(d_model)
         
 
-    def forward(self, input, style_vector, d_w, d_g, d_b, p_w, p_g, p_b, mask=None, slf_attn_mask=None):
+    def forward(self, input, d_w, d_g, d_b, p_w, p_g, p_b, mask=None, slf_attn_mask=None):
         # multi-head self attn
         slf_attn_output, slf_attn = self.slf_attn(input, mask=slf_attn_mask)
         slf_attn_output = self.ln_0(slf_attn_output)

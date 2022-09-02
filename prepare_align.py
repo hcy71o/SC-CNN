@@ -8,7 +8,7 @@ def main(data_path, sr):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_path', type=str, default='/home/hcy71/DATA/LibriTTS')
-    parser.add_argument('--resample_rate', '-sr', type=int, default=22050)
+    parser.add_argument('--resample_rate', '-sr', type=int, default=16000)
 
     args = parser.parse_args()
 
