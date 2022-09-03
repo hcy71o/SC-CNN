@@ -4,6 +4,9 @@ Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153), we built up our codes
 0. [LibriTTS]((https://research.google/tools/datasets/libri-tts/)) dataset (train-clean-100 and train-clean-360) is used.
 1. You can select sampling rate for both 22050Hz and 16000Hz.
 
+## Materials
+[demo page](https://hcy71o.github.io/SC-CNN-demo/)
+
 ## Prerequisites
 - Clone this repository.
 - Install python requirements. Please refer [requirements.txt](requirements.txt)
