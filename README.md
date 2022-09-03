@@ -5,7 +5,8 @@ Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153), we built up our codes
 1. You can select sampling rate for both 22050Hz and 16000Hz.
 
 ## Materials
-[demo page](https://hcy71o.github.io/SC-CNN-demo/)
+- [Demo page](https://hcy71o.github.io/SC-CNN-demo/)
+- [TODO][Pretrained Model]
 
 ## Prerequisites
 - Clone this repository.
