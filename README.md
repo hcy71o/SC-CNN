@@ -38,6 +38,7 @@ python preprocess.py
 ```
 python train.py --data_path [Preprocessed LibriTTS DATAPATH]
 ```
+You can change hyperparameters of SC-CNN (kernel_size, channels), sampling rate (16 or 22.05kHz) or other model configurations in configs/config.json
 
 ## Inference
 0. Mel generation
