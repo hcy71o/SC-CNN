@@ -34,19 +34,3 @@ class StyleSpeechLoss(nn.Module):
         e_loss = e_loss / B
 
         return mel_loss, d_loss, p_loss, e_loss
-
-
-class LSGANLoss(nn.Module):
-    """ LSGAN Loss """
-    def __init__(self):
-        super(LSGANLoss, self).__init__()
-        self.criterion = nn.MSELoss()
-        
-    def forward(self, r, is_real):
-        if is_real: 
-            ones = torch.ones(r.size(), requires_grad=False).to(r.device)
-            loss = self.criterion(r, ones)
-        else:
-            zeros = torch.zeros(r.size(), requires_grad=False).to(r.device)
-            loss = self.criterion(r, zeros)
-        return loss

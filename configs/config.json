@@ -40,8 +40,6 @@
     "style_vector_dim": 128,
 
     "batch_size": 12,
-    "meta_batch_size": 20,
-    "meta_iter": 40000,
     "n_warm_up_step": 4000,
     "grad_clip_thresh": 1.0,
 
