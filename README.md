@@ -33,7 +33,7 @@ $ mfa align ......LibriTTS/wav22 lexicon.txt english_us_arpa .........LibriTTS/T
 ```
 python preprocess.py
 ```
-(Check input&output data paths)
+2-0. Check input&output data paths.
 
 ## Training
 ```
