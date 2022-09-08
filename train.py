@@ -8,7 +8,6 @@ from models.SCCNN import SCCNN
 from dataloader import prepare_dataloader
 from optimizer import ScheduledOptim
 from evaluate import evaluate
-from test import test
 import utils
 
 def load_checkpoint(checkpoint_path, model, optimizer):

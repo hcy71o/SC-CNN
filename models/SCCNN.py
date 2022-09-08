@@ -144,8 +144,8 @@ class Encoder(nn.Module):
         
         for i, enc_layer in enumerate(self.layer_stack):
             
-            d_w, d_g, d_b, p_w, p_g, p_b = d_ws[:, i, :, :, :], d_gs[:, i, :], d_bs[:, i, :], \ 
-                                            p_ws[:, i, :, :, :], p_gs[:, i, :], p_bs[:, i, :]
+            d_w, d_g, d_b = d_ws[:, i, :, :, :], d_gs[:, i, :], d_bs[:, i, :]
+            p_w, p_g, p_b = p_ws[:, i, :, :, :], p_gs[:, i, :], p_bs[:, i, :]
             
             enc_output, enc_slf_attn = enc_layer(
                 enc_output, d_w, d_g, d_b, p_w, p_g, p_b,

@@ -112,12 +112,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--checkpoint_path", type=str, required=True, 
         help="Path to the pretrained model")
-    # parser.add_argument('--config', default='configs/config.json')
-    parser.add_argument('--config', default='exp_ch8_ker7/config.json')
+    parser.add_argument('--config', default='configs/config.json')
     parser.add_argument("--save_path", type=str, default='results/')
     parser.add_argument("--ref_audio", type=str, required=True,
         help="path to an reference speech audio sample")
-    parser.add_argument("--ref_spk", type=str, default = None)
     parser.add_argument("--text", type=str, default='In being comparatively modern.',
         help="raw text to synthesize")
     parser.add_argument("--lexicon_path", type=str, default='lexicon/librispeech-lexicon.txt')
@@ -142,13 +140,13 @@ if __name__ == "__main__":
                 config.mel_fmax)
 
     # Synthesize
-    args.text = [
-        'Please call Stella.',
-        'Ask her to bring these things with her from the store.',
-        'Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob.',
-        'We also need a small plastic snake and a big toy frog for the kids.',
-        'When the sunlight strikes raindrops in the air, they act as a prism and form a rainbow.',
-        # 'People put on their coats, is it cold out there?'
-    ]
-    
+    # args.text = [
+    #     'Please call Stella.',
+    #     'Ask her to bring these things with her from the store.',
+    #     'Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob.',
+    #     'We also need a small plastic snake and a big toy frog for the kids.',
+    #     'When the sunlight strikes raindrops in the air, they act as a prism and form a rainbow.',
+    #     # 'People put on their coats, is it cold out there?'
+    # ]
+    args.sampling_rate = config.sampling_rate
     synthesize(args, args.text, model, _stft)

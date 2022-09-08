@@ -6,7 +6,8 @@ Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153), we built up our codes
 
 ## Materials
 - [Demo page](https://hcy71o.github.io/SC-CNN-demo/)
-- [TODO][Pretrained Model]
+<!-- - [TODO][Pretrained Model] -->
+<!-- - [TODO] Add pretrained HiFi-GAN and its inference code -->
 
 ## Prerequisites
 - Clone this repository.
@@ -43,5 +44,5 @@ You can change hyperparameters of SC-CNN (kernel_size, channels), sampling rate 
 ## Inference
 0. Mel generation
 ```
-python synthesize.py --checkpoint_path [CKPT PATH] --ref_audio [REF AUDIO PATH]
+python synthesize.py --checkpoint_path [CKPT PATH] --ref_audio [REF AUDIO PATH] --text [INPUT TEXT]
 ```
