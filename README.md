@@ -5,10 +5,6 @@ Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153), we built up our codes
 1. You can select sampling rate for both 22050Hz and 16000Hz.
 2. (Option) In (`wav2vec` branch), you can use wav2vec2.0 representations instead of mel-spectrograms as the input of the reference encoder.
 
-# Branch
-- [x] TransferTTS (Zero-shot) (`master` branch)
-- [TODO] TransferTTS (Few-shot) (`fewshot` branch)
-
 ## Materials
 - [Demo page](https://hcy71o.github.io/SC-CNN-demo/)
 <!-- - [TODO][Pretrained Model] -->
