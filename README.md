@@ -3,7 +3,7 @@ Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153), we built up our codes
 
 0. [LibriTTS]((https://research.google/tools/datasets/libri-tts/)) dataset (train-clean-100 and train-clean-360) is used.
 1. You can select sampling rate for both 22050Hz and 16000Hz.
-2. (Option) In (`wav2vec` branch), you can use wav2vec2.0 representations instead of mel-spectrograms as the input of the reference encoder.
+2. (Option) In `wav2vec` branch, you can use [Wav2vec2.0](https://arxiv.org/abs/2006.11477) representations instead of mel-spectrograms as the input of the reference encoder.
 
 ## Materials
 - [Demo page](https://hcy71o.github.io/SC-CNN-demo/)
