@@ -1,5 +1,6 @@
 # SC-CNN : Effective Speaker Conditioning Method for Zero-Shot Multi-Speaker Text-to-Speech Systems
 <p align="center"><img src="SC-CNN.jpg" width="60%"></p>
+
 Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153), we built up our codes based on [Link](https://github.com/KevinMIN95/StyleSpeech)
 
 0. [LibriTTS]((https://research.google/tools/datasets/libri-tts/)) dataset (train-clean-100 and train-clean-360) is used.
