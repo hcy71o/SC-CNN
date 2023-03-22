@@ -3,7 +3,7 @@ Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153), we built up our codes
 
 0. [LibriTTS]((https://research.google/tools/datasets/libri-tts/)) dataset (train-clean-100 and train-clean-360) is used.
 1. Sampling rate is set to 16000Hz.
-2. This is the implementation of `SC-StyleSpeech`
+2. This is the implementation of `SC-StyleSpeech`. For SC-TransferTTS, please refer to the branch `SC-TransferTTS`
 
 ## Materials
 - [Demo page](https://hcy71o.github.io/SC-CNN-demo/)
