@@ -22,7 +22,7 @@ Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153) and [VITS](https://arx
 # Cython-version Monotonoic Alignment Search
 cd monotonic_align
 python setup.py build_ext --inplace
-
+```
 ## Training Exmaple
 ```sh
 python train.py -c configs/vctk_base.json -m vctk_base
