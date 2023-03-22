@@ -3,6 +3,7 @@ Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153) and [VITS](https://arx
 
 0. [VCTK]((https://paperswithcode.com/dataset/vctk)) dataset is used.
 1. Sampling rate is set to 22050Hz.
+2. This is the implementation of ```SC-TransferTTS```
 
 ## Materials
 - [Demo page](https://hcy71o.github.io/SC-CNN-demo/)
