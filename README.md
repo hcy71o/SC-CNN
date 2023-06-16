@@ -1,4 +1,4 @@
-# SC-CNN : Effective Speaker Conditioning Method for Zero-Shot Multi-Speaker Text-to-Speech Systems [Paper](https://ieeexplore.ieee.org/document/10129023)
+# SC-CNN : Effective Speaker Conditioning Method for Zero-Shot Multi-Speaker Text-to-Speech Systems
 Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153) and [VITS](https://arxiv.org/abs/2106.06103), we built up our codes based on [Link](https://github.com/KevinMIN95/StyleSpeech) and [Link](https://github.com/jaywalnut310/vits)
 
 0. [VCTK]((https://paperswithcode.com/dataset/vctk)) dataset is used.
@@ -7,7 +7,7 @@ Thanks to [StyleSpeech](https://arxiv.org/abs/2106.03153) and [VITS](https://arx
 
 ## Materials
 - [Demo page](https://hcy71o.github.io/SC-CNN-demo/)
-
+- [Paper](https://ieeexplore.ieee.org/document/10129023)
 
 
 
