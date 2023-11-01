@@ -292,6 +292,7 @@ class SCFFN(nn.Module):
     
     #! style-conv
     batch = x.size(0)
+    kernel_size = d_w.size(-1)
     p = (d_w.size(-1)-1)//2
     in_ch = d_w.size(1)
     #! weight normalization
