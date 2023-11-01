@@ -297,7 +297,10 @@ class SCFFN(nn.Module):
     #! weight normalization
     d_w = nn.functional.normalize(d_w, dim=1)*d_g.unsqueeze(-1).unsqueeze(-1)
     p_w = nn.functional.normalize(p_w, dim=1)*p_g.unsqueeze(-1).unsqueeze(-1)
-    out = []
+    # out = []
+    
+    '''
+    # original
     for i in range(batch):
       #* Depthwise
       val = nn.functional.conv1d(x[i].unsqueeze(0),
@@ -306,8 +309,20 @@ class SCFFN(nn.Module):
       val = nn.functional.conv1d(val,p_w[i],p_b[i])
       out.append(val)
     x = torch.stack(out).squeeze(1)
+    '''
+    
+    #* Use einsum for acceleration
+    x_padded = F.pad(x, (p, p))
+    #* Depthwise
+    x = torch.einsum('bctk,bcwk->bct', x_padded.unfold(2, kernel_size, 1), d_w)
+    x += d_b.unsqueeze(2)
+    x = x * x_mask
+    
+    x = torch.einsum('bct,bco->bot', x, p_w.squeeze(-1))
+    x += p_b.unsqueeze(2)
     
     x = self.conv_2(self.padding(x * x_mask))
+    
     return x * x_mask
   
   def _causal_padding(self, x):
