@@ -8,6 +8,7 @@ from models.Modules import Mish, LinearNorm, ConvNorm, Conv1dGLU, \
 from models.VarianceAdaptor import VarianceAdaptor
 from models.Loss import StyleSpeechLoss
 from utils import get_mask_from_lengths
+from torch.nn import functional as F
 
 
 class SCCNN(nn.Module):
@@ -323,21 +324,32 @@ class SCPositionwiseFeedForward(nn.Module):
         
         # SC-CNN
         batch = output.size(0)
+        kernel_size = d_w.size(-1)
         p = (d_w.size(-1)-1)//2 #padding
         in_ch = d_w.size(1)
         # weight normalization
         d_w = nn.functional.normalize(d_w, dim=1)*d_g.unsqueeze(-1).unsqueeze(-1)
         p_w = nn.functional.normalize(p_w, dim=1)*p_g.unsqueeze(-1).unsqueeze(-1)
-        # convolution
+        
+        '''
+        # original
         out = []
         for i in range(batch):
-            # Depth-wise
-            val = nn.functional.conv1d(output[i].unsqueeze(0),
-                                            d_w[i],d_b[i],padding=p,groups=in_ch)
-            # Point-wise
-            val = nn.functional.conv1d(val,p_w[i],p_b[i])
-            out.append(val)
-        output = torch.stack(out).squeeze(1)
+          #* Depthwise
+          val = nn.functional.conv1d(x[i].unsqueeze(0),
+                                          d_w[i],d_b[i],padding=p,groups=in_ch)
+          #* Pointwise
+          val = nn.functional.conv1d(val,p_w[i],p_b[i])
+          out.append(val)
+        x = torch.stack(out).squeeze(1)
+        '''
+        #* Use einsum for acceleration
+        x_padded = F.pad(x, (p, p))
+        #* Depthwise
+        x = torch.einsum('bctk,bcwk->bct', x_padded.unfold(2, kernel_size, 1), d_w)
+        x += d_b.unsqueeze(2)
+        x = torch.einsum('bct,bco->bot', x, p_w.squeeze(-1))
+        x += p_b.unsqueeze(2)
         
         output = self.dropout(self.mish(output))
         output = self.w_2(output)
